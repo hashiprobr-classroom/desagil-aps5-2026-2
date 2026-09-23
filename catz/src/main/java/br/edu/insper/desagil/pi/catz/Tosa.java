@@ -1,19 +1,17 @@
 package br.edu.insper.desagil.pi.catz;
 
-public class Tosa {
-    private Cliente cliente;
-    private String descricao;
-
+public class Tosa extends Procedimento {
     public Tosa(Cliente cliente, String descricao) {
-        this.cliente = cliente;
-        this.descricao = descricao;
+        super(cliente, descricao);
     }
 
-    public String getDescricao() {
-        return descricao;
+    @Override
+    public double preco() {
+        return 88.50;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    @Override
+    public double desconto() {
+        return 0.1;
     }
 }

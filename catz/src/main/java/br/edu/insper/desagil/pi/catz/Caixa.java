@@ -4,66 +4,47 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Caixa {
-    private List<Banho> banhos;
-    private List<Tosa> tosas;
-    private List<Checkup> checkups;
+    private List<Procedimento> procedimentos;
 
     public Caixa() {
-        this.banhos = new ArrayList<>();
-        this.tosas = new ArrayList<>();
-        this.checkups = new ArrayList<>();
+        this.procedimentos = new ArrayList<>();
     }
 
+    public void adiciona(Procedimento procedimento) {
+        procedimentos.add(procedimento);
+    }
+
+    @Deprecated
     public void adiciona(Banho banho) {
-        banhos.add(banho);
+        procedimentos.add(banho);
     }
 
+    @Deprecated
     public void adiciona(Tosa tosa) {
-        tosas.add(tosa);
+        procedimentos.add(tosa);
     }
 
+    @Deprecated
     public void adiciona(Checkup checkup) {
-        checkups.add(checkup);
+        procedimentos.add(checkup);
     }
 
     // AVISO: O dono da clínica falou que a ordem dos
     // procedimentos no relatório não importa. Para ele,
     // tanto faz estarem agrupados por tipo ou não.
     public void relata() {
-        for (Checkup checkup : checkups) {
-            IO.println(checkup.getCliente().resume());
-            IO.println(checkup.getDescricao());
-        }
-        for (Banho banho : banhos) {
-            IO.println(banho.getCliente().resume());
-            IO.println(banho.getDescricao());
-        }
-        for (Tosa tosa : tosas) {
-            IO.println(tosa.getCliente().resume());
-            IO.println(tosa.getDescricao());
+        for (Procedimento procedimento : procedimentos) {
+            IO.println(procedimento.getCliente().resume());
+            IO.println(procedimento.getDescricao());
         }
     }
 
     public double fecha() {
         double s = 0;
-        for (Banho banho : banhos) {
-            double preco = 74.90;
-            if (banho.getCliente().isFiel()) {
-                preco *= 0.85;
-            }
-            s += preco;
-        }
-        for (Tosa tosa : tosas) {
-            double preco = 88.50;
-            if (tosa.getCliente().isFiel()) {
-                preco *= 0.9;
-            }
-            s += preco;
-        }
-        for (Checkup checkup : checkups) {
-            double preco = 275.00;
-            if (checkup.getCliente().isFiel()) {
-                preco *= 0.95;
+        for (Procedimento procedimento : procedimentos) {
+            double preco = procedimento.preco();
+            if (procedimento.getCliente().isFiel()) {
+                preco *= 1 - procedimento.desconto();
             }
             s += preco;
         }

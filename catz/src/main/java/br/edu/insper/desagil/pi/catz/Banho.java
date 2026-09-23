@@ -1,19 +1,17 @@
 package br.edu.insper.desagil.pi.catz;
 
-public class Banho {
-    private Cliente cliente;
-    private String descricao;
-
+public class Banho extends Procedimento {
     public Banho(Cliente cliente, String descricao) {
-        this.cliente = cliente;
-        this.descricao = descricao;
+        super(cliente, descricao);
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    @Override
+    public double preco() {
+        return 74.90;
     }
 
-    public String getDescricao() {
-        return descricao;
+    @Override
+    public double desconto() {
+        return 0.15;
     }
 }

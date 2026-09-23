@@ -1,19 +1,17 @@
 package br.edu.insper.desagil.pi.catz;
 
-public class Checkup {
-    private Cliente cliente;
-    private String descricao;
-
+public class Checkup extends Procedimento {
     public Checkup(Cliente cliente, String descricao) {
-        this.cliente = cliente;
-        this.descricao = descricao;
+        super(cliente, descricao);
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    @Override
+    public double preco() {
+        return 275.00;
     }
 
-    public String getDescricao() {
-        return descricao;
+    @Override
+    public double desconto() {
+        return 0.05;
     }
 }
