@@ -1,6 +1,6 @@
 package br.edu.insper.desagil.pi.catz;
 
-public class Procedimento {
+public abstract class Procedimento {
     private Cliente cliente;
     private String descricao;
 
@@ -16,4 +16,8 @@ public class Procedimento {
     public String getDescricao() {
         return descricao;
     }
+
+    public abstract double preco();
+
+    public abstract double desconto();
 }

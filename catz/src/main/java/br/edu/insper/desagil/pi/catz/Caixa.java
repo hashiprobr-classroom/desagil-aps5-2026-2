@@ -47,23 +47,23 @@ public class Caixa {
     public double fecha() {
         double s = 0;
         for (Banho banho : banhos) {
-            double preco = 74.90;
+            double preco = banho.preco();
             if (banho.getCliente().isFiel()) {
-                preco *= 0.85;
+                preco *= 1 - banho.desconto();
             }
             s += preco;
         }
         for (Tosa tosa : tosas) {
-            double preco = 88.50;
+            double preco = tosa.preco();
             if (tosa.getCliente().isFiel()) {
-                preco *= 0.9;
+                preco *= 1 - tosa.desconto();
             }
             s += preco;
         }
         for (Checkup checkup : checkups) {
-            double preco = 275.00;
+            double preco = checkup.preco();
             if (checkup.getCliente().isFiel()) {
-                preco *= 0.95;
+                preco *= 1 - checkup.desconto();
             }
             s += preco;
         }
